@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+body {
+    font-family: 'Alan Sans', sans-serif;
+    background-color: #ffffff; /* A soft, romantic pink */
+}
+
+.chat-message {
+    max-width: 75%;
+    padding: 0.75rem 1.25rem;
+    border-radius: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+}
+.user-message {
+    background-color: #ffffff;
+    margin-left: auto;
+    border-bottom-right-radius: 0.5rem;
+}
+.ai-message {
+    background-color: #ffffff;
+    border-bottom-left-radius: 0.5rem;
+}
+
+/* Ocean blue theme for Shadow Assassin */
+.ocean-blue-theme {
+    background-color: #ffffff !important;
+}
+.ocean-blue-theme #app,
+.ocean-blue-theme main,
+.ocean-blue-theme aside,
+.ocean-blue-theme header,
+.ocean-blue-theme #chat-box,
+.ocean-blue-theme #avatar-bg,
+.ocean-blue-theme .bg-gray-800 {
+    background-color: #0d4e83 !important;
+}
+.ocean-blue-theme .border-gray-600 {
+    border-color: #38bdf8 !important;
+}
+.ocean-blue-theme .text-white {
+    color: #e0f2fe !important;
+}
+.ocean-blue-theme .bg-gray-700 {
+    background-color: #2563eb !important;
+}
+.ocean-blue-theme .bg-gray-500 {
+    background-color: #0ea5e9 !important;
+}
+
+/* Crimson Red theme for Rhaast */
+.crimson-red-theme {
+    background-color: #fff1f2 !important;
+}
+.crimson-red-theme #app,
+.crimson-red-theme main,
+.crimson-red-theme aside,
+.crimson-red-theme header,
+.crimson-red-theme #chat-box,
+.crimson-red-theme #avatar-bg,
+.crimson-red-theme .bg-gray-800 {
+    background-color: #7f1d1d !important;
+}
+.crimson-red-theme .border-gray-600 {
+    border-color: #ef4444 !important;
+}
+.crimson-red-theme .text-white {
+    color: #fee2e2 !important;
+}
+.crimson-red-theme .bg-gray-700 {
+    background-color: #b91c1c !important;
+}
+.crimson-red-theme .bg-gray-500 {
+    background-color: #dc2626 !important;
+}
+
+.profile-container-shadow {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.ocean-blue-theme .profile-container-shadow {
+    box-shadow: 0 8px 16px rgba(14, 165, 233, 0.6);
+}
+.crimson-red-theme .profile-container-shadow {
+    box-shadow: 0 8px 16px rgba(220, 38, 38, 0.6);
+}
+
+#customization-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #222831 #393e46; /* thumb color, track color */
+}
+
+/* For Webkit browsers (Chrome, Edge, Safari) */
+#customization-sidebar::-webkit-scrollbar {
+    width: 10px;
+    background: #393e46; /* track color */
+}
+#customization-sidebar::-webkit-scrollbar-thumb {
+    background: #3c4757; /* thumb color */
+    border-radius: 8px;
+}
+#customization-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #11151a;
+}
