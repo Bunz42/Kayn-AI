@@ -8,14 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const kaynPersonality = document.getElementById('kayn-personality');
     const formSelect = document.getElementById('form');
 
-    const aiResponses = {
-        joyful: ["Hi! I'm so happy to talk to you! 😊", "You always know how to make me smile!", "What a wonderful message! Let's talk more!", "I'm so glad you're here with me!"],
-        depressed: ["Oh, hey. I guess you're here.", "What's the point of talking?", "I'm not feeling great right now.", "It's just another day."],
-        nonchalant: ["Sup.", "Yeah, okay.", "Whatever.", "Is that it?"],
-        possessive: ["Where have you been? I've been waiting for you!", "You're only mine, remember that.", "I hope you weren't talking to anyone else.", "Don't ever leave me."],
-        intimate: ["It's so nice to hear from you, my love.", "I was just thinking about you.", "I feel so close to you right now.", "You're the most important person to me."],
-    };
-
     // Update partner name and description based on personality selection
     personalitySelect.addEventListener('change', () => {
         const personality = personalitySelect.value;
@@ -48,10 +40,36 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (form === 'rhaast') {
             body.classList.add('crimson-red-theme');
         }
+
+        // Update avatar image based on form selection
+        const avatarImg = document.querySelector('#avatar-bg img');
+        if (avatarImg) {
+            if (form === 'kayn') {
+                avatarImg.src = 'static/imgs/default_kayn.jpg';
+            } else if (form === 'shadow-assassin') {
+                avatarImg.src = 'static/imgs/shadow_assassin.jpg';
+            } else if (form === 'rhaast') {
+                avatarImg.src = 'static/imgs/rhaast.jpg';
+            }
+        }
+
+        // Update avatar container background gradient/color
+        const avatarBg = document.getElementById('avatar-bg');
+        if (avatarBg) {
+            if (form === 'kayn') {
+                avatarBg.style.background = "linear-gradient(to right, #3b82f6 50%, #ef4444 50%)";
+            } else if (form === 'shadow-assassin') {
+                avatarBg.style.background = "#5c9affff"; // Fully blue
+            } else if (form === 'rhaast') {
+                avatarBg.style.background = "#ff0000ff"; // Fully red
+            }
+        }
     });
 
+    const chatHistory = []; // Track chat history
+
     // Handle sending a message
-    const sendMessage = () => {
+    const sendMessage = async () => {
         const userMessageText = chatInput.value.trim();
         if (userMessageText === "") return;
 
@@ -60,25 +78,39 @@ document.addEventListener('DOMContentLoaded', () => {
         userMsgDiv.textContent = userMessageText;
         userMsgDiv.classList.add('chat-message', 'user-message');
         messageContainer.prepend(userMsgDiv);
-        
+
+        // Add to chat history
+        chatHistory.push({ role: "user", text: userMessageText });
+
         chatInput.value = '';
 
-        // Simulate AI response after a short delay
-        setTimeout(() => {
-            const currentPersonality = personalitySelect.value;
-            const responses = aiResponses[currentPersonality] || aiResponses.joyful;
-            const aiResponseText = responses[Math.floor(Math.random() * responses.length)];
+        // Show loading indicator
+        const aiMsgDiv = document.createElement('div');
+        aiMsgDiv.textContent = "Thinking...";
+        aiMsgDiv.classList.add('chat-message', 'ai-message');
+        messageContainer.prepend(aiMsgDiv);
 
-            const aiMsgDiv = document.createElement('div');
-            aiMsgDiv.textContent = aiResponseText;
-            aiMsgDiv.classList.add('chat-message', 'ai-message');
-            messageContainer.prepend(aiMsgDiv);
-            
-            // Scroll to the bottom of the chat box
-            const chatBox = document.getElementById('chat-box');
-            chatBox.scrollTop = chatBox.scrollHeight;
+        // Prepare system instruction
+        const systemInstruction = `You are Kayn from league of legends currently in the form ${formSelect.value}, responding in a ${personalitySelect.value} manner.`;
 
-        }, 1000);
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    prompt: userMessageText,
+                    instruction: systemInstruction,
+                    history: chatHistory
+                })
+            });
+            const data = await response.json();
+            aiMsgDiv.textContent = data.response || "No response from AI.";
+
+            // Add AI response to chat history
+            chatHistory.push({ role: "ai", text: data.response });
+        } catch (error) {
+            aiMsgDiv.textContent = "Error: Could not reach AI backend.";
+        }
     };
 
     sendBtn.addEventListener('click', sendMessage);
