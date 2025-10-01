@@ -170,23 +170,13 @@ This ensures the AI responds appropriately based on your selections.
 - **Possessive**: Intense and protective
 - **Intimate**: Romantic and affectionate
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Ideas for Contributions
-- Add more personality types
-- Implement user authentication for saving preferences
-- Add voice chat functionality
-- Create additional League of Legends character options
-- Improve mobile responsiveness
-- Add conversation export functionality
+### Currently Working On
+- Adding more personality types
+- Implementing user authentication for saving preferences
+- Adding AI voice
+- Creating additional League of Legends jungler options
+- Improving mobile responsiveness
+- Adding conversation export functionality
 
 ## ⚠️ Troubleshooting
 
@@ -216,8 +206,6 @@ This project is created for entertainment and educational purposes. League of Le
 - **FastAPI**: For the excellent web framework
 - **TailwindCSS**: For the utility-first CSS framework
 - All contributors and users of this project
-
-## 📧 Contact
 
 For questions, issues, or suggestions, please open an issue on the GitHub repository.
 
