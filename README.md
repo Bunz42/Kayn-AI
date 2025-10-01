@@ -206,9 +206,6 @@ This project is created for entertainment and educational purposes. League of Le
 - **FastAPI**: For the excellent web framework
 - **TailwindCSS**: For the utility-first CSS framework
 - All contributors and users of this project
-
-For questions, issues, or suggestions, please open an issue on the GitHub repository.
-
 ---
 
 **Disclaimer**: This is a fan-made project and is not affiliated with or endorsed by Riot Games. Created for fun and learning purposes. I'm sorry (but not really).
